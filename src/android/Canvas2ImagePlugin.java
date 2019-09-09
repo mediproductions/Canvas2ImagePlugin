@@ -10,6 +10,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -108,9 +109,8 @@ public class Canvas2ImagePlugin extends CordovaPlugin {
 			 */
 			if (check >= 1) {
 				if (picfolder == Environment.DIRECTORY_PICTURES){
-					folder = Environment
-	//					.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-						.getExternalStoragePublicDirectory(picfolder);
+					Context context = this.cordova.getActivity().getApplicationContext();
+					folder = context.getExternalFilesDir(picfolder);
 				}
 				else{
 					folder = new File(picfolder);
